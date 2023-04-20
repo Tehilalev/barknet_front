@@ -21,6 +21,9 @@ jobs:
       - run:
           name: Run Linter
           command: npm run lint
+      - run:
+          name: CD - Deploy static site
+          command: curl "https://api.render.com/deploy/srv-ch0m5nrh4hsukp3utfeg?key=C1eboaw3_fk"
 
 
 workflows:
