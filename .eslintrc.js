@@ -18,6 +18,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    "no-console": "off",
     "react/react-in-jsx-scope": "off",
     "quotes": ["error", "double"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
