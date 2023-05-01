@@ -26,6 +26,7 @@ module.exports = {
     "no-undef": "off",
     "no-shadow": "off",
     "camelcase": "off",
+    "eol-last": ["error", "always"],
     "no-unexpected-multiline": "error",
     "eslint-disable-next-line": "off",
     "import/prefer-default-export": "off",
@@ -46,7 +47,6 @@ module.exports = {
         }
       }
     ],
-    "linebreak-style": "off",
     "object-curly-spacing": "off",
     "indent": "off",
     "comma-dangle": "off",
