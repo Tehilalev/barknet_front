@@ -4,7 +4,7 @@ import React from "react";
 
 function App() {
   React.useEffect(() => {
-    fetch("https://barknet-front.onrender.com")
+    fetch("http://localhost:8000/message")
       .then((response) => response.json())
       .then((data) => console.log(data));
   }, []);
