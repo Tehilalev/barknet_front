@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          here we will put our registering
+          here we will put our registering!!
         </p>
       </header>
     </div>
