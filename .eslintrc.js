@@ -4,28 +4,28 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'plugin:react/recommended',
-    'airbnb',
+    "plugin:react/recommended",
+    "airbnb",
   ],
   overrides: [
   ],
 
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
   plugins: [
-    'react',
+    "react",
   ],
   rules: {
     "no-console": "off",
     "react/react-in-jsx-scope": "off",
-    "quotes": ["error", "double"],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    quotes: ["error", "double"],
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
     "react/jsx-props-no-spreading": ["warn"],
     "no-undef": "off",
     "no-shadow": "off",
-    "camelcase": "off",
+    camelcase: "off",
     "eol-last": ["error", "always"],
     "no-unexpected-multiline": "error",
     "eslint-disable-next-line": "off",
@@ -34,26 +34,25 @@ module.exports = {
     "jsx-a11y/label-has-associated-control": [
       "error",
       {
-        "required": {
-          "some": ["nesting", "id"]
+        required: {
+          some: ["nesting", "id"]
         }
       }
     ],
     "jsx-a11y/label-has-for": [
       "error",
       {
-        "required": {
-          "some": ["nesting", "id"]
+        required: {
+          some: ["nesting", "id"]
         }
       }
     ],
     "object-curly-spacing": "off",
-    "indent": "off",
+    indent: "off",
     "comma-dangle": "off",
     "require-jsdoc": "off",
     "arrow-parens": "off",
     "padded-blocks": "off",
-    "react/react-in-jsx-scope": "off",
     "no-unused-vars": "off",
     "react/prop-types": 0
   },
