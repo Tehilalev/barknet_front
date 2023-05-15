@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./RegistrationForm.css"; // Import the CSS file for styling
 
-const RegistrationForm = () => {
+function RegistrationForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -63,8 +63,9 @@ const RegistrationForm = () => {
   return (
 
     <div className="registration-form">
+
       <h1>Welcome to BarkNet Web</h1>
-      <label>First Name:</label>
+      <label htmlFor="firstName">First Name:</label>
       <input
         type="text"
         placeholder="First Name"
@@ -79,7 +80,7 @@ const RegistrationForm = () => {
       )}
       <br />
 
-      <label>Last Name:</label>
+      <label htmlFor="lastName">Last Name:</label>
       <input
         type="text"
         placeholder="Last Name"
@@ -92,7 +93,7 @@ const RegistrationForm = () => {
       {showMessageLast && (
         <p className="input-message">Last name includes up to 15 letters only</p>)}
       <br />
-      <label>User Name:</label>
+      <label htmlFor="userName">User Name:</label>
       <input
         type="text"
         placeholder="User Name"
@@ -104,7 +105,7 @@ const RegistrationForm = () => {
       {showMessageuser && (
         <p className="input-message">User name contains up to 20 characters only and must be unique</p>)}
       <br />
-      <label>Email:</label>
+      <label htmlFor="email">Email:</label>
       <input
         type="email"
         placeholder="Email"
@@ -113,7 +114,7 @@ const RegistrationForm = () => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <br />
-      <label>Password:</label>
+      <label htmlFor="pass">Password:</label>
       <input
         type="password"
         placeholder="Password"
@@ -126,25 +127,25 @@ const RegistrationForm = () => {
       {showMessagepass && (
         <p className="input-message">Password contains only 8 characters and at least one uppercase letter</p>)}
       <br />
-      <label>Birthdate:</label>
-      <div className="birthdate-container">
-        <input
-          type="date"
-          id="start"
-          name="birthdate"
-          value="1999-12-13"
-          min="1966-01-01"
-          max="2020-12-31"
-          onChange={(e) => setBirthdate(e.target.value)}>
-        </input>
-      </div>
-      <button onClick={handleRegistration}>Sign Up</button>
+      <label htmlFor="b-day">Birthdate:</label>
+      <input
+        type="date"
+        id="start"
+        name="birthdate"
+        value="1999-12-13"
+        min="1966-01-01"
+        max="2020-12-31"
+        onChange={(e) => setBirthdate(e.target.value)}
+      />
+      <button type="button" onClick={handleRegistration}>
+        Sign Up
+      </button>
       <p>
         Already have an account?
         <a href="/login">Login</a>
       </p>
     </div>
   );
-};
+}
 
 export default RegistrationForm;

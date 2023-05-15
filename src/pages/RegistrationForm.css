@@ -2,12 +2,11 @@
   max-width: 400px;
   margin: -93px auto;
   padding: 0px;
-  background-color: #282c34;
 }
 
 .registration-form h1 {
-  font-size: 3em;
-  letter-spacing: 1px;
+  font-size: 29px;
+  letter-spacing: 2px;
   background: url('/public/bac.jpg');
   text-align: center;
   margin-bottom: 20px;
@@ -49,7 +48,7 @@
 
 .registration-form .input-message {
   font-size: 12px;
-  color: #0b0b0b;
+  color: #ff2222;
   margin-top: 5px;
 }
 
@@ -60,6 +59,10 @@
 
 .registration-form select {
   flex-basis: 30%;
+}
+
+.registration-form image {
+  background-image: url(/public/logo1.jpeg);
 }
 
 .input-invalid {
