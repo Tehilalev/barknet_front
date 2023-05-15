@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import RegistrationForm from "./pages/RegistrationForm";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -28,13 +29,10 @@ function App() {
             <p key={item.id}>{item.name}</p>
           ))}
         </div>
-        <p>
-          here we will put our registering.
-        </p>
+        <RegistrationForm />
       </header>
     </div>
-
   );
-}
 
+}
 export default App;

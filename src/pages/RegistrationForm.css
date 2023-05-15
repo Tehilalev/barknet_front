@@ -1,0 +1,47 @@
+.registration-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f3a9a9;
+}
+
+.registration-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.registration-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.registration-form input,
+.registration-form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.registration-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ececa6;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+}
+
+.registration-form .input-message {
+  font-size: 12px;
+  color: #0b0b0b;
+  margin-top: 5px;
+}
+
+.registration-form .birthdate-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.registration-form select {
+  flex-basis: 30%;
+}
