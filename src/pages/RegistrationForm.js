@@ -14,17 +14,61 @@ const RegistrationForm = () => {
   const [showMessagepass, setShowMessagepass] = useState(false);
 
   const handleRegistration = () => {
-    // Perform registration logic here
-    console.log("Registration clicked!");
+    let isValid = true;
+
+    // Validation checks
+    if (firstName.length === 0 || firstName.length > 15 || !/[A-Z]/.test(firstName)) {
+      setFirstName(""); // Clear the field
+      isValid = false;
+      document.getElementById("first-name-input").classList.add("input-invalid");
+    } else {
+      document.getElementById("first-name-input").classList.remove("input-invalid");
+    }
+
+    if (lastName.length === 0 || lastName.length > 15 || !/[A-Z]/.test(lastName)) {
+      setLastName(""); // Clear the field
+      isValid = false;
+      document.getElementById("last-name-input").classList.add("input-invalid");
+    } else {
+      document.getElementById("last-name-input").classList.remove("input-invalid");
+    }
+
+    if (password.length !== 8 || !/[A-Z]/.test(password)) {
+      setPassword(""); // Clear the field
+      isValid = false;
+      document.getElementById("pass-input").classList.add("input-invalid");
+    } else {
+      document.getElementById("pass-input").classList.remove("input-invalid");
+    }
+
+    // Email validation using a basic regular expression
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.match(emailRegex)) {
+      setEmail(""); // Clear the field
+      isValid = false;
+      document.getElementById("email-input").classList.add("input-invalid");
+    } else {
+      document.getElementById("email-input").classList.remove("input-invalid");
+    }
+
+    // Perform registration logic if all fields are valid
+    if (isValid) {
+      console.log("Registration clicked!");
+      // Add your registration logic here
+      // Redirect to homepage or perform any necessary actions
+      window.location.href = "/homepage"; // Replace "/homepage" with the actual route for the homepage
+    }
   };
 
   return (
+
     <div className="registration-form">
       <h1>Registration</h1>
       <label>First Name:</label>
       <input
         type="text"
         placeholder="First Name"
+        id="first-name-input"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         onClick={() => setShowMessageFirst(true)}
@@ -39,6 +83,7 @@ const RegistrationForm = () => {
       <input
         type="text"
         placeholder="Last Name"
+        id="last-name-input"
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
         onClick={() => setShowMessageLast(true)}
@@ -63,6 +108,7 @@ const RegistrationForm = () => {
       <input
         type="email"
         placeholder="Email"
+        id="email-input"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
@@ -71,6 +117,7 @@ const RegistrationForm = () => {
       <input
         type="password"
         placeholder="Password"
+        id="pass-input"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         onClick={() => setShowMessagepass(true)}

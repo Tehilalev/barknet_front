@@ -45,3 +45,7 @@
 .registration-form select {
   flex-basis: 30%;
 }
+
+.input-invalid {
+  border: 2px solid red;
+}
