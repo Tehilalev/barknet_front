@@ -63,7 +63,7 @@ const RegistrationForm = () => {
   return (
 
     <div className="registration-form">
-      <h1>Registration</h1>
+      <h1>Welcome to BarkNet Web</h1>
       <label>First Name:</label>
       <input
         type="text"
