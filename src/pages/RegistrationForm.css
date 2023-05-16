@@ -2,17 +2,20 @@
   max-width: 400px;
   margin: -93px auto;
   padding: 0px;
+  display: contents;
 }
 
 .registration-form h1 {
-  font-size: 29px;
+  font-size: 55px;
   letter-spacing: 2px;
   background: url('/public/bac.jpg');
   text-align: center;
   margin-bottom: 20px;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: text 7.5s linear infinite;
+  animation: text 25.5s linear infinite;
+  position: absolute;
+  top: -34px;
 }
 
 @keyframes text {
@@ -40,10 +43,11 @@
 .registration-form button {
   width: 100%;
   padding: 10px;
-  background-color: #c7948f;
+  background-color: #d6c9b6;
   color: #000000;
   border: none;
   cursor: pointer;
+  border-radius: 24px;
 }
 
 .registration-form .input-message {
@@ -61,10 +65,29 @@
   flex-basis: 30%;
 }
 
-.registration-form image {
-  background-image: url(/public/logo1.jpeg);
-}
-
 .input-invalid {
   border: 2px solid red;
+}
+
+.div-icons {
+  position: inherit;
+  width: 558px;
+  height: 539px;
+  background: transparent;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, .5);
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, .5);
+  backdrop-filter: blur(20px);
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+}
+
+.registration-form img {
+  width: 113px;
+  height: 90px;
+  position: absolute;
+  top: 9px;
+  right: 251px;
+  border-radius: 50px;
 }
