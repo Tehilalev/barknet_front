@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./RegistrationForm.css"; // Import the CSS file for styling
+import Route__pages from "../components/Route__pages";
 
 function RegistrationForm() {
   const [firstName, setFirstName] = useState("");
@@ -17,20 +18,34 @@ function RegistrationForm() {
     let isValid = true;
 
     // Validation checks
-    if (firstName.length === 0 || firstName.length > 15 || !/[A-Z]/.test(firstName)) {
+    if (
+      firstName.length === 0 ||
+      firstName.length > 15 ||
+      !/[A-Z]/.test(firstName)
+    ) {
       setFirstName(""); // Clear the field
       isValid = false;
-      document.getElementById("first-name-input").classList.add("input-invalid");
+      document
+        .getElementById("first-name-input")
+        .classList.add("input-invalid");
     } else {
-      document.getElementById("first-name-input").classList.remove("input-invalid");
+      document
+        .getElementById("first-name-input")
+        .classList.remove("input-invalid");
     }
 
-    if (lastName.length === 0 || lastName.length > 15 || !/[A-Z]/.test(lastName)) {
+    if (
+      lastName.length === 0 ||
+      lastName.length > 15 ||
+      !/[A-Z]/.test(lastName)
+    ) {
       setLastName(""); // Clear the field
       isValid = false;
       document.getElementById("last-name-input").classList.add("input-invalid");
     } else {
-      document.getElementById("last-name-input").classList.remove("input-invalid");
+      document
+        .getElementById("last-name-input")
+        .classList.remove("input-invalid");
     }
 
     if (password.length !== 8 || !/[A-Z]/.test(password)) {
@@ -56,13 +71,11 @@ function RegistrationForm() {
       console.log("Registration clicked!");
       // Add your registration logic here
       // Redirect to homepage or perform any necessary actions
-      window.location.href = "/homepage"; // Replace "/homepage" with the actual route for the homepage
+      window.location.href = "../components/Route__pages";
     }
   };
   return (
-
     <div className="registration-form">
-
       <h1>Welcome to BarkNet Web</h1>
       <img src="logo1.jpeg" alt=" " />
 
@@ -78,7 +91,9 @@ function RegistrationForm() {
           onBlur={() => setShowMessageFirst(false)}
         />
         {showMessageFirst && (
-          <p className="input-message">First name includes up to 15 letters only</p>
+          <p className="input-message">
+            First name includes up to 15 letters only
+          </p>
         )}
         <br />
 
@@ -93,7 +108,10 @@ function RegistrationForm() {
           onBlur={() => setShowMessageLast(false)}
         />
         {showMessageLast && (
-          <p className="input-message">Last name includes up to 15 letters only</p>)}
+          <p className="input-message">
+            Last name includes up to 15 letters only
+          </p>
+        )}
         <br />
         <label htmlFor="userName">User Name:</label>
         <input
@@ -105,7 +123,10 @@ function RegistrationForm() {
           onBlur={() => setShowMessageuser(false)}
         />
         {showMessageuser && (
-          <p className="input-message">User name contains up to 20 characters only and must be unique</p>)}
+          <p className="input-message">
+            User name contains up to 20 characters only and must be unique
+          </p>
+        )}
         <br />
         <label htmlFor="email">Email:</label>
         <input
@@ -127,7 +148,11 @@ function RegistrationForm() {
           onBlur={() => setShowMessagepass(false)}
         />
         {showMessagepass && (
-          <p className="input-message">Password contains only 8 characters and at least one uppercase letter</p>)}
+          <p className="input-message">
+            Password contains only 8 characters and at least one uppercase
+            letter
+          </p>
+        )}
         <br />
         <label htmlFor="b-day">Birthdate:</label>
         <input
