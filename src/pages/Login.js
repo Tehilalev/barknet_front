@@ -60,7 +60,7 @@ function Login() {
       <br />
       <p>
         Don't have an account?
-        <Link to="/RegistrationForm">
+        <Link to="/">
           Sign up
         </Link>
       </p>

@@ -16,7 +16,7 @@ function RegistrationForm() {
   const [showMessagepass, setShowMessagepass] = useState(false);
   const history = useNavigate();
 
-  const handleRegistration = async () => {
+  const handleRegistration = async (e) => {
     let isValid = true;
 
     // Validation checks
@@ -65,8 +65,9 @@ function RegistrationForm() {
 
     // Perform registration logic if all fields are valid
     if (isValid) {
+      e.preventDefault();
       try {
-        const response = await axios.post("http://localhost:8000/RegistrationForm", {
+        const response = await axios.post("http://localhost:8000/", {
           firstName,
           lastName,
           username,
@@ -74,6 +75,7 @@ function RegistrationForm() {
           password,
           birthdate,
         });
+        console.log(response.data);
         if (response.data.status === "OK") {
           // Registration successful, redirect to homepage or perform any necessary actions
           history("./pages/Route__pages");

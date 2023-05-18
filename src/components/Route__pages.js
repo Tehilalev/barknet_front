@@ -14,7 +14,7 @@ function Route__pages() {
     <Router>
       <Navbar />
       <Route>
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/" component={Home} />
         <Route path="/search" component={Search} />
         <Route path="/explore" component={Explore} />
         <Route path="/notifications" component={Notifications} />
