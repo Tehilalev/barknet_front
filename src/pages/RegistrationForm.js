@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./RegistrationForm.css"; // Import the CSS file for styling
-import Route__pages from "../components/Route__pages";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function RegistrationForm() {
   const [firstName, setFirstName] = useState("");
@@ -13,17 +14,16 @@ function RegistrationForm() {
   const [showMessageLast, setShowMessageLast] = useState(false);
   const [showMessageuser, setShowMessageuser] = useState(false);
   const [showMessagepass, setShowMessagepass] = useState(false);
+  const history = useNavigate();
 
-  const handleRegistration = () => {
+  const handleRegistration = async () => {
     let isValid = true;
 
     // Validation checks
     if (
-      firstName.length === 0 ||
-      firstName.length > 15 ||
-      !/[A-Z]/.test(firstName)
+      firstName.length === 0 || firstName.length > 15 || !/[A-Za-z]/.test(firstName)
     ) {
-      setFirstName(""); // Clear the field
+      setFirstName("");
       isValid = false;
       document
         .getElementById("first-name-input")
@@ -35,11 +35,9 @@ function RegistrationForm() {
     }
 
     if (
-      lastName.length === 0 ||
-      lastName.length > 15 ||
-      !/[A-Z]/.test(lastName)
+      lastName.length === 0 || lastName.length > 15 || !/[A-Za-z]/.test(lastName)
     ) {
-      setLastName(""); // Clear the field
+      setLastName("");
       isValid = false;
       document.getElementById("last-name-input").classList.add("input-invalid");
     } else {
@@ -49,17 +47,16 @@ function RegistrationForm() {
     }
 
     if (password.length !== 8 || !/[A-Z]/.test(password)) {
-      setPassword(""); // Clear the field
+      setPassword("");
       isValid = false;
       document.getElementById("pass-input").classList.add("input-invalid");
     } else {
       document.getElementById("pass-input").classList.remove("input-invalid");
     }
 
-    // Email validation using a basic regular expression
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.match(emailRegex)) {
-      setEmail(""); // Clear the field
+      setEmail("");
       isValid = false;
       document.getElementById("email-input").classList.add("input-invalid");
     } else {
@@ -68,12 +65,29 @@ function RegistrationForm() {
 
     // Perform registration logic if all fields are valid
     if (isValid) {
-      console.log("Registration clicked!");
-      // Add your registration logic here
-      // Redirect to homepage or perform any necessary actions
-      window.location.href = "../components/Route__pages";
+      try {
+        const response = await axios.post("http://localhost:8000/RegistrationForm", {
+          firstName,
+          lastName,
+          username,
+          email,
+          password,
+          birthdate,
+        });
+        if (response.data.status === "OK") {
+          // Registration successful, redirect to homepage or perform any necessary actions
+          history("./pages/Route__pages");
+        } else {
+          // Handle registration error
+          console.log("Registration error");
+        }
+      } catch (error) {
+        console.log(error);
+        // Handle request error
+      }
     }
   };
+
   return (
     <div className="registration-form">
       <h1>Welcome to BarkNet Web</h1>
@@ -159,7 +173,7 @@ function RegistrationForm() {
           type="date"
           id="start"
           name="birthdate"
-          value="1999-12-13"
+          value={birthdate}
           min="1966-01-01"
           max="2020-12-31"
           onChange={(e) => setBirthdate(e.target.value)}
@@ -170,7 +184,7 @@ function RegistrationForm() {
         </button>
         <p>
           Already have an account?
-          <a href="/login">Login</a>
+          <a href="./Login">Login</a>
         </p>
       </div>
     </div>

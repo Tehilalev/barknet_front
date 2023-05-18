@@ -6,6 +6,6 @@ function Explore() {
       <h1>Explore</h1>
     </div>
   );
-};
+}
 
 export default Explore;
