@@ -26,11 +26,11 @@ function RegistrationForm() {
       setFirstName("");
       isValid = false;
       document
-        .getElementById("first-name-input")
+        .getElementById("firstName")
         .classList.add("input-invalid");
     } else {
       document
-        .getElementById("first-name-input")
+        .getElementById("firstName")
         .classList.remove("input-invalid");
     }
 
@@ -39,28 +39,28 @@ function RegistrationForm() {
     ) {
       setLastName("");
       isValid = false;
-      document.getElementById("last-name-input").classList.add("input-invalid");
+      document.getElementById("lastName").classList.add("input-invalid");
     } else {
       document
-        .getElementById("last-name-input")
+        .getElementById("lastName")
         .classList.remove("input-invalid");
     }
 
     if (password.length !== 8 || !/[A-Z]/.test(password)) {
       setPassword("");
       isValid = false;
-      document.getElementById("pass-input").classList.add("input-invalid");
+      document.getElementById("password").classList.add("input-invalid");
     } else {
-      document.getElementById("pass-input").classList.remove("input-invalid");
+      document.getElementById("password").classList.remove("input-invalid");
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.match(emailRegex)) {
       setEmail("");
       isValid = false;
-      document.getElementById("email-input").classList.add("input-invalid");
+      document.getElementById("email").classList.add("input-invalid");
     } else {
-      document.getElementById("email-input").classList.remove("input-invalid");
+      document.getElementById("email").classList.remove("input-invalid");
     }
 
     // Perform registration logic if all fields are valid
@@ -100,7 +100,7 @@ function RegistrationForm() {
         <input
           type="text"
           placeholder="First Name"
-          id="first-name-input"
+          id="firstName"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           onClick={() => setShowMessageFirst(true)}
@@ -117,7 +117,7 @@ function RegistrationForm() {
         <input
           type="text"
           placeholder="Last Name"
-          id="last-name-input"
+          id="lastName"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           onClick={() => setShowMessageLast(true)}
@@ -132,6 +132,7 @@ function RegistrationForm() {
         <label htmlFor="userName">User Name:</label>
         <input
           type="text"
+          id="userName"
           placeholder="User Name"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -148,16 +149,16 @@ function RegistrationForm() {
         <input
           type="email"
           placeholder="Email"
-          id="email-input"
+          id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <br />
-        <label htmlFor="pass">Password:</label>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
           placeholder="Password"
-          id="pass-input"
+          id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           onClick={() => setShowMessagepass(true)}
@@ -173,7 +174,7 @@ function RegistrationForm() {
         <label htmlFor="b-day">Birthdate:</label>
         <input
           type="date"
-          id="start"
+          id="b-day"
           name="birthdate"
           value={birthdate}
           min="1966-01-01"
