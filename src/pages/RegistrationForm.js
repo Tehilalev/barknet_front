@@ -78,7 +78,11 @@ function RegistrationForm() {
         console.log(response.data);
         if (response.data.status === "OK") {
           // Registration successful, redirect to homepage or perform any necessary actions
-          history("./pages/Route__pages");
+          history("../src/components/Route__pages");
+        }
+        if (response.data.status === "User Exsits") {
+          setUsername("");
+          alert("User Name already exsists");
         } else {
           // Handle registration error
           console.log("Registration error");

@@ -1,6 +1,5 @@
 .registration-form {
   text-align: center;
-  background-image: url(/public/background.jpg);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -25,7 +24,7 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: text 25.5s linear infinite;
-  position: absolute;
+  position: fixed;
   top: -34px;
 }
 
@@ -81,17 +80,21 @@
 }
 
 .div-icons {
-  position: inherit;
-  width: 558px;
-  height: 539px;
+  position: fixed;
+  width: 46%;
+  height: 80%;
   background: transparent;
   border-radius: 20px;
   border: 2px solid rgba(255, 255, 255, .5);
   box-shadow: 0px 0px 30px rgba(0, 0, 0, .5);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  display: inline-block;
+  /* display: inline-block; */
+  top: 16%;
+  left: 30%;
   justify-content: center;
   align-items: center;
+
 }
 
 .registration-form img {
