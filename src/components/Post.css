@@ -1,0 +1,49 @@
+.post {
+  display: flex;
+  border: 2px solid black;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-direction: column;
+  padding: 10px;
+}
+
+/*.post_content {
+}*/
+
+.post_action {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.post_text {
+  display: flex;
+  font-size: 17px;
+  font-family: "Lato", sans-serif;
+}
+.heart_icon {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: black;
+  transition: color 0.3s;
+  cursor: pointer;
+
+}
+
+.heart_icon:hover {
+  color: rgb(228, 131, 147);
+}
+
+.liked {
+  color: rgb(228, 131, 147);
+
+}
+
+.likes_count {
+  margin-left: 10px;
+  font-family: "Lato", sans-serif;
+
+}

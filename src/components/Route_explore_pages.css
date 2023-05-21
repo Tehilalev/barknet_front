@@ -1,0 +1,18 @@
+.title1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(161, 117, 117, 0.905);
+}
+
+.dog_gif {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-image: url(./dog_gif.gif);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}

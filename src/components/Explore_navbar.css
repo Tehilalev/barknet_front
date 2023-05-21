@@ -1,0 +1,32 @@
+.ex_page {
+  background-color: none;
+  /*display: inline-block;
+  margin: auto;*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-family: "Lato", sans-serif;
+}
+
+.ex_nav {
+  display: flex;
+  width: 80%;
+  margin-left: 12rem;
+  position: absolute;
+  top: 30px;
+  /*  margin-left: 10rem;*/
+}
+
+.ex_nav li {
+  list-style: none;
+  display: inline-block;
+  margin: auto;
+}
+
+.ex_nav li a {
+  text-decoration: none;
+  color: rgba(161, 117, 117, 0.905);
+  font-size: 20px;
+  padding: 8px 20px;
+  font-weight: bold;
+}
