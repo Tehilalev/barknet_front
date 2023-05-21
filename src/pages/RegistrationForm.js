@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./RegistrationForm.css"; // Import the CSS file for styling
-import Route__pages from "../components/Route__pages";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function RegistrationForm() {
   const [firstName, setFirstName] = useState("");
@@ -13,67 +14,86 @@ function RegistrationForm() {
   const [showMessageLast, setShowMessageLast] = useState(false);
   const [showMessageuser, setShowMessageuser] = useState(false);
   const [showMessagepass, setShowMessagepass] = useState(false);
+  const history = useNavigate();
 
-  const handleRegistration = () => {
+  const handleRegistration = async (e) => {
     let isValid = true;
 
     // Validation checks
     if (
-      firstName.length === 0 ||
-      firstName.length > 15 ||
-      !/[A-Z]/.test(firstName)
+      firstName.length === 0 || firstName.length > 15 || !/[A-Za-z]/.test(firstName)
     ) {
-      setFirstName(""); // Clear the field
+      setFirstName("");
       isValid = false;
       document
-        .getElementById("first-name-input")
+        .getElementById("firstName")
         .classList.add("input-invalid");
     } else {
       document
-        .getElementById("first-name-input")
+        .getElementById("firstName")
         .classList.remove("input-invalid");
     }
 
     if (
-      lastName.length === 0 ||
-      lastName.length > 15 ||
-      !/[A-Z]/.test(lastName)
+      lastName.length === 0 || lastName.length > 15 || !/[A-Za-z]/.test(lastName)
     ) {
-      setLastName(""); // Clear the field
+      setLastName("");
       isValid = false;
-      document.getElementById("last-name-input").classList.add("input-invalid");
+      document.getElementById("lastName").classList.add("input-invalid");
     } else {
       document
-        .getElementById("last-name-input")
+        .getElementById("lastName")
         .classList.remove("input-invalid");
     }
 
     if (password.length !== 8 || !/[A-Z]/.test(password)) {
-      setPassword(""); // Clear the field
+      setPassword("");
       isValid = false;
-      document.getElementById("pass-input").classList.add("input-invalid");
+      document.getElementById("password").classList.add("input-invalid");
     } else {
-      document.getElementById("pass-input").classList.remove("input-invalid");
+      document.getElementById("password").classList.remove("input-invalid");
     }
 
-    // Email validation using a basic regular expression
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.match(emailRegex)) {
-      setEmail(""); // Clear the field
+      setEmail("");
       isValid = false;
-      document.getElementById("email-input").classList.add("input-invalid");
+      document.getElementById("email").classList.add("input-invalid");
     } else {
-      document.getElementById("email-input").classList.remove("input-invalid");
+      document.getElementById("email").classList.remove("input-invalid");
     }
 
     // Perform registration logic if all fields are valid
     if (isValid) {
-      console.log("Registration clicked!");
-      // Add your registration logic here
-      // Redirect to homepage or perform any necessary actions
-      window.location.href = "../components/Route__pages";
+      e.preventDefault();
+      try {
+        const response = await axios.post("http://localhost:8000/", {
+          firstName,
+          lastName,
+          username,
+          email,
+          password,
+          birthdate,
+        });
+        console.log(response.data);
+        if (response.data.status === "OK") {
+          // Registration successful, redirect to homepage or perform any necessary actions
+          history("../src/components/Route__pages");
+        }
+        if (response.data.status === "User Exsits") {
+          setUsername("");
+          alert("User Name already exsists");
+        } else {
+          // Handle registration error
+          console.log("Registration error");
+        }
+      } catch (error) {
+        console.log(error);
+        // Handle request error
+      }
     }
   };
+
   return (
     <div className="registration-form">
       <h1>Welcome to BarkNet Web</h1>
@@ -84,7 +104,7 @@ function RegistrationForm() {
         <input
           type="text"
           placeholder="First Name"
-          id="first-name-input"
+          id="firstName"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           onClick={() => setShowMessageFirst(true)}
@@ -101,7 +121,7 @@ function RegistrationForm() {
         <input
           type="text"
           placeholder="Last Name"
-          id="last-name-input"
+          id="lastName"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           onClick={() => setShowMessageLast(true)}
@@ -116,6 +136,7 @@ function RegistrationForm() {
         <label htmlFor="userName">User Name:</label>
         <input
           type="text"
+          id="userName"
           placeholder="User Name"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -132,16 +153,16 @@ function RegistrationForm() {
         <input
           type="email"
           placeholder="Email"
-          id="email-input"
+          id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <br />
-        <label htmlFor="pass">Password:</label>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
           placeholder="Password"
-          id="pass-input"
+          id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           onClick={() => setShowMessagepass(true)}
@@ -157,9 +178,9 @@ function RegistrationForm() {
         <label htmlFor="b-day">Birthdate:</label>
         <input
           type="date"
-          id="start"
+          id="b-day"
           name="birthdate"
-          value="1999-12-13"
+          value={birthdate}
           min="1966-01-01"
           max="2020-12-31"
           onChange={(e) => setBirthdate(e.target.value)}
@@ -170,7 +191,7 @@ function RegistrationForm() {
         </button>
         <p>
           Already have an account?
-          <a href="/login">Login</a>
+          <a href="./Login">Login</a>
         </p>
       </div>
     </div>
