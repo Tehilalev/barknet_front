@@ -1,4 +1,6 @@
 import React from "react";
+import "./New_post.css";
+
 
 function New_post() {
   return (

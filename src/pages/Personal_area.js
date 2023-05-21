@@ -1,4 +1,5 @@
 import React from "react";
+import "./Personal_area.css";
 
 function Personal_area() {
   return (

@@ -10,15 +10,15 @@ function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
   return (
-    <>
+    <> 
       <div className="navbar">
         <Link to="#" className="menu-bars">
           <FaIcons.FaBars onClick={showSidebar} />
         </Link>
         <img
           src={logo}
-          width={100}
-          height={100}
+          width={95}
+          height={95}
           alt="image_logo"
           className="navbar-logo"
         />
