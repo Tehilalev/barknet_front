@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login.css"; // Import the CSS file
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import Route__pages from "../components/Route__pages";
 
 function Login() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ function Login() {
       if (status === "OK") {
         // Login successful
         localStorage.setItem("token", data); // Store the token in localStorage or any other storage mechanism
-        navigate("./Route_pages"); // Redirect to the home page
+        navigate(Route__pages); // Redirect to the home page
       } else {
         // Login failed
         setError(error);
