@@ -12,6 +12,4 @@ function Traveling() {
       </div>
     </div>
   );
-}
-
-export default Traveling;
+} export default Traveling;
