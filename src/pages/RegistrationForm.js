@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./RegistrationForm.css"; // Import the CSS file for styling
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Route__pages from "../components/Route__pages";
 
 function RegistrationForm() {
   const [firstName, setFirstName] = useState("");
@@ -77,13 +76,7 @@ function RegistrationForm() {
         });
         console.log(response.data);
         if (response.data.status === "OK") {
-<<<<<<< HEAD
-          // Registration successful, redirect to homepage or perform any necessary actions
-          history(Route__pages); 
-          /*"../src/components/Route__pages"*/ 
-=======
           history("/Home");
->>>>>>> 5323e5d65d585c2452999b9ec6b2bead580f8363
         }
         if (response.data.error === "User Exsits") {
           setUsername("");

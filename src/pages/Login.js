@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Login.css"; // Import the CSS file
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import Route__pages from "../components/Route__pages";
 
 function Login() {
   const history = useNavigate();
