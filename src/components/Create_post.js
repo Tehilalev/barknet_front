@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./Create_post.css";
 
-const Create_post = () => {
+let globalPostID = 0; // Initialize the global postID variable
+
+function Create_post() {
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState("");
   const [selectedHashtag, setSelectedHashtag] = useState("");
@@ -32,15 +34,32 @@ const Create_post = () => {
     setSelectedHashtag(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Perform post creation logic here, e.g., send data to backend
-
-    // Reset form
-    setImage(null);
-    setCaption("");
-    setSelectedHashtag("");
-    setPreviewImage(null);
+    try {
+      const formData = new FormData();
+      formData.append("postID", globalPostID.toString()); // Set the postID to the current value of globalPostID
+      formData.append("username", "Tehilalev"); // Replace "currentUsername" with the actual current username
+      formData.append("picture", image);
+      formData.append("caption", caption);
+      formData.append("hashtag", selectedHashtag);
+      formData.append("likesCount", 0);
+      globalPostID += 1;
+      const response = await fetch("http://localhost:8000/", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await response.json();
+      console.log(data); // Handle the response data as needed
+      // Reset form
+      setImage(null);
+      setCaption("");
+      setSelectedHashtag("");
+      setPreviewImage(null);
+    } catch (error) {
+      console.error("Error creating post:", error);
+      // Handle the error as needed
+    }
   };
 
   return (
@@ -107,6 +126,6 @@ const Create_post = () => {
       </form>
     </div>
   );
-};
+}
 
 export default Create_post;
