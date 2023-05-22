@@ -20,7 +20,7 @@
   font-size: 15px;
   margin-top: 6px;
   margin-bottom: 20px;
-  right: 40px;
+  right: 20px;
 }
 
 .captionDiv {
@@ -31,28 +31,39 @@
 }
 
 .caption {
-  width: 30%;
+  width: 60%;
   font-size: 30px;
   display: flex;
   flex-direction: row;
   font-family: "Lato", sans-serif;
+  text-align: left;
+
 }
 
 .captionTextBox {
   display: flex;
   width: 70%;
   flex-direction: row;
-  height: 30px;
-  margin-bottom: 20px;
+  height: 25px;
   position: relative;
-  right: 20px;
+  margin-bottom: 20px;
+  left: 5px
 }
 
 .chooseHashtag {
   display: flex;
-  width: 57%;
+  width: 90%;
   font-size: 30px;
   font-family: "Lato", sans-serif;
+}
+
+.selected_hashtag {
+  display: flex;
+  position: relative;
+  font-size: 25px;
+  margin-top: 4px;
+  margin-bottom: 20px;
+  left: 5px;
 }
 
 .hashtagDiv {
