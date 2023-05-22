@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Route__pages from "../components/Route__pages";
 
 function Login() {
-  const navigate = useNavigate();
+  const history = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,14 +25,13 @@ function Login() {
       if (status === "OK") {
         // Login successful
         localStorage.setItem("token", data); // Store the token in localStorage or any other storage mechanism
-        navigate(Route__pages); // Redirect to the home page
+        navigate("./Route_pages"); // Redirect to the home page
       } else {
         // Login failed
         setError(error);
       }
     } catch (error) {
       console.log(error);
-      setError("An error occurred during login.");
     }
   }
 

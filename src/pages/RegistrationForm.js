@@ -22,8 +22,7 @@ function RegistrationForm() {
 
     // Validation checks
     if (
-      firstName.length === 0 || firstName.length > 15 || !/[A-Za-z]/.test(firstName)
-    ) {
+      firstName.length === 0 || firstName.length > 15 || !(firstName.match(/^[A-Za-z\s]+$/))) {
       setFirstName("");
       isValid = false;
       document
@@ -36,7 +35,7 @@ function RegistrationForm() {
     }
 
     if (
-      lastName.length === 0 || lastName.length > 15 || !/[A-Za-z]/.test(lastName)
+      lastName.length === 0 || lastName.length > 15 || !(lastName.match(/^[A-Za-z\s]+$/))
     ) {
       setLastName("");
       isValid = false;
@@ -78,13 +77,18 @@ function RegistrationForm() {
         });
         console.log(response.data);
         if (response.data.status === "OK") {
+<<<<<<< HEAD
           // Registration successful, redirect to homepage or perform any necessary actions
           history(Route__pages); 
           /*"../src/components/Route__pages"*/ 
+=======
+          history("/Home");
+>>>>>>> 5323e5d65d585c2452999b9ec6b2bead580f8363
         }
-        if (response.data.status === "User Exsits") {
+        if (response.data.error === "User Exsits") {
           setUsername("");
-          alert("User Name already exsists");
+          // eslint-disable-next-line no-alert
+          alert("Username already exists. Please choose a different username.");
         } else {
           // Handle registration error
           console.log("Registration error");
