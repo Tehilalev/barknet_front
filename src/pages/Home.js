@@ -3,11 +3,12 @@ import "./Home.css";
 import Navbar from "../components/Navbar";
 function Home() {
   return (
-
-    <div className="home">
+    <div>
       <Navbar />
-      <div className="right_side">
-        <h1>Home</h1>
+      <div className="home">
+        <div className="right_side">
+          <h1>Home</h1>
+        </div>
       </div>
     </div>
   );

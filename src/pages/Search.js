@@ -15,14 +15,11 @@ function Search() {
     <div>
       <Navbar />
       <div className="search">
-
         <h2 className="label_search"> Who we are looking for?</h2>
         <input className="search_box" type="text" />
         <button type="button" className="search_button" onClick={handleSearch}>
           Search
         </button>
-        <h1>בלה בלה בלה בלה בלה בלה בלה</h1>
-        <h1>עוד בלה בלה בלה בהלה בלה בלה בלה </h1>
       </div>
     </div>
   );

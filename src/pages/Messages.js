@@ -2,12 +2,13 @@ import React from "react";
 import "./Messages.css";
 import Navbar from "../components/Navbar";
 
-
 function Messages() {
   return (
-    <div className="messages">
+    <div>
       <Navbar />
-      <h1>Messages</h1>
+      <div className="messages">
+        <h1>Messages</h1>
+      </div>
     </div>
   );
 }
