@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Explore_navbar.css";
 
-const Explore_navbar = () => {
+function Explore_navbar() {
   return (
     <div className="ex_page">
       <ul className="ex_nav">
         <li>
-          <Link to="/">All Posts</Link>
+          <Link to="/Explore">All Posts</Link>
         </li>
         <li>
           <Link to="/adoption">Adoption</Link>
@@ -36,5 +36,5 @@ const Explore_navbar = () => {
       </ul>
     </div>
   );
-};
+}
 export default Explore_navbar;
