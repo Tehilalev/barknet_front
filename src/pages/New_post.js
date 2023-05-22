@@ -1,13 +1,15 @@
 import React from "react";
 import "./New_post.css";
 import Navbar from "../components/Navbar";
-
+import Create_post from "../components/Create_post";
 
 function New_post() {
   return (
-    <div className="new_post">
+    <div>
       <Navbar />
-      <h1>New_post</h1>
+      <div className="new_post">
+        <Create_post />
+      </div>
     </div>
   );
 }

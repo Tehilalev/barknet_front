@@ -1,0 +1,13 @@
+.messages {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  max-width: 960px;
+  border: 1px solid #da2c2c;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 25%;
+  flex-direction: column;
+  font-family: "Lato", sans-serif;
+}

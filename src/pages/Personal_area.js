@@ -4,9 +4,11 @@ import Navbar from "../components/Navbar";
 
 function Personal_area() {
   return (
-    <div className="personal_area">
+    <div>
       <Navbar />
-      <h1>Personal_area</h1>
+      <div className="personal_area">
+        <h1>Personal_area</h1>
+      </div>
     </div>
   );
 }

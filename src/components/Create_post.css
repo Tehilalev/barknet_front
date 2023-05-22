@@ -1,0 +1,75 @@
+.imageDiv {
+  display: flex; /* Use flexbox layout */
+  align-items: center;
+  display: flex;
+  font-size: 30px;
+  font-family: "Lato", sans-serif;
+}
+
+.UplodeImageLabel {
+  display: flex;
+  font-size: 30px;
+  font-family: "Lato", sans-serif;
+  width: 60%;
+  padding-bottom: 20px;
+}
+
+.fileUploadButton {
+  display: flex;
+  position: relative;
+  font-size: 15px;
+  margin-top: 6px;
+  margin-bottom: 20px;
+  right: 40px;
+}
+
+.captionDiv {
+  display: flex; /* Use flexbox layout */
+  /*align-items: 10px;*/
+  font-size: 30px;
+  font-family: "Lato", sans-serif;
+}
+
+.caption {
+  width: 30%;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  font-family: "Lato", sans-serif;
+}
+
+.captionTextBox {
+  display: flex;
+  width: 70%;
+  flex-direction: row;
+  height: 30px;
+  margin-bottom: 20px;
+  position: relative;
+  right: 20px;
+}
+
+.chooseHashtag {
+  display: flex;
+  width: 57%;
+  font-size: 30px;
+  font-family: "Lato", sans-serif;
+}
+
+.hashtagDiv {
+  display: flex;
+  font-size: 30px;
+  font-family: "Lato", sans-serif;
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: center;
+  
+}
+.createPostButton {
+  margin-top: 50px;
+  display: flex;
+  font-size: 20px;
+  position: relative;
+  left: 90px;
+}
