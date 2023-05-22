@@ -44,62 +44,68 @@ const Create_post = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="imageDiv">
-        <label htmlFor="image" className="UplodeImageLabel">
-          Upload Image:
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="label" className="user_name">
+          userName
         </label>
-        <input
-          type="file"
-          className="fileUploadButton"
-          id="image"
-          accept="image/*"
-          onChange={handleImageUpload}
-        />
-      </div>
-
-      {previewImage && (
-        <div>
-          <img src={previewImage} alt="Preview" style={{ width: "200px" }} />
+        <div className="imageDiv">
+          <label htmlFor="image" className="UplodeImageLabel">
+            Upload Image:
+          </label>
+          <input
+            type="file"
+            className="fileUploadButton"
+            id="image"
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
         </div>
-      )}
 
-      <div className="captionDiv">
-        <label htmlFor="caption" className="caption">
-          Caption:
-        </label>
-        <input
-          type="text"
-          id="caption"
-          className="captionTextBox"
-          value={caption}
-          onChange={handleCaptionChange}
-        />
-      </div>
+        {previewImage && (
+          <div>
+            <img src={previewImage} alt="Preview" style={{ width: "200px" }} />
+          </div>
+        )}
 
-      <div className="hashtagDiv">
-        <label htmlFor="hashtag" className="chooseHashtag">
-          Choose Hashtag:
-        </label>
-        <select
-          id="hashtag"
-          value={selectedHashtag}
-          onChange={handleHashtagChange}
-        >
-          <option value="">Select</option>
-          {hashtags.map((tag) => (
-            <option key={tag} value={tag}>
-              {tag}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="buttonDiv">
-        <button type="submit" className="createPostButton">
-          Create Post
-        </button>
-      </div>
-    </form>
+        <div className="captionDiv">
+          <label htmlFor="caption" className="caption">
+            Caption:
+          </label>
+          <input
+            type="text"
+            id="caption"
+            className="captionTextBox"
+            value={caption}
+            onChange={handleCaptionChange}
+          />
+        </div>
+
+        <div className="hashtagDiv">
+          <label htmlFor="hashtag" className="chooseHashtag">
+            Choose Hashtag:
+          </label>
+          <select
+            className="selected_hashtag"
+            id="hashtag"
+            value={selectedHashtag}
+            onChange={handleHashtagChange}
+          >
+            <option value="">Select</option>
+            {hashtags.map((tag) => (
+              <option key={tag} value={tag}>
+                {tag}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="buttonDiv">
+          <button type="submit" className="createPostButton">
+            Create Post
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

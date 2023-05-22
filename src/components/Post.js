@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as AiIcons from "react-icons/ai";
 import "./Post.css";
 
-const Post = ({ imageUrl, text }) => {
+const Post = ({ imageUrl, text,  }) => {
   const [likes, setLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
