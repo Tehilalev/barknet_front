@@ -24,7 +24,7 @@ function Login() {
       if (status === "OK") {
         // Login successful
         localStorage.setItem("token", data); // Store the token in localStorage or any other storage mechanism
-        navigate("./Route_pages"); // Redirect to the home page
+        history("/Home");
       } else {
         // Login failed
         setError(error);
@@ -59,9 +59,7 @@ function Login() {
       <br />
       <p>
         Don't have an account?
-        <Link to="/">
-          Sign up
-        </Link>
+        <Link to="/">Sign up</Link>
       </p>
     </div>
   );
