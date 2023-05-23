@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Create_post.css";
+import axios from "axios";
+import { Buffer } from "buffer";
 
 let globalPostID = 0; // Initialize the global postID variable
 
@@ -19,10 +21,22 @@ function Create_post() {
     "Traveling",
     "Others",
   ];
-
-  const handleImageUpload = (event) => {
+  const handleImageUpload = async (event) => {
     const uploadedImage = event.target.files[0];
-    setImage(uploadedImage);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const imageData = e.target.result;
+      const blob = new Blob([imageData]);
+      const arrayBufferReader = new FileReader();
+      arrayBufferReader.onloadend = () => {
+        // Convert the ArrayBuffer to a Buffer
+        const binaryData = Buffer.from(arrayBufferReader.result);
+
+        setImage(binaryData);
+      };
+      arrayBufferReader.readAsArrayBuffer(blob);
+    };
+    reader.readAsArrayBuffer(uploadedImage);
     setPreviewImage(URL.createObjectURL(uploadedImage));
   };
 
@@ -38,27 +52,26 @@ function Create_post() {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("postID", globalPostID.toString()); // Set the postID to the current value of globalPostID
-      formData.append("username", "Tehilalev"); // Replace "currentUsername" with the actual current username
+      formData.append("postID", globalPostID);
+      formData.append("username", "Tehilalev");
       formData.append("picture", image);
       formData.append("caption", caption);
       formData.append("hashtag", selectedHashtag);
       formData.append("likesCount", 0);
-      globalPostID += 1;
-      const response = await fetch("http://localhost:8000/", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await response.json();
-      console.log(data); // Handle the response data as needed
-      // Reset form
-      setImage(null);
-      setCaption("");
-      setSelectedHashtag("");
-      setPreviewImage(null);
+      const response = await axios.post(
+        "http://localhost:8000/New_Post",
+        formData
+      );
+
+      if (response.data.status === "OK") {
+        globalPostID += 1;
+        setImage(null);
+        setCaption("");
+        setSelectedHashtag("");
+        setPreviewImage(null);
+      }
     } catch (error) {
-      console.error("Error creating post:", error);
-      // Handle the error as needed
+      console.log("Error creating post:", error);
     }
   };
 
@@ -74,6 +87,7 @@ function Create_post() {
           </label>
           <input
             type="file"
+            name="picture"
             className="fileUploadButton"
             id="image"
             accept="image/*"
