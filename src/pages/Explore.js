@@ -3,7 +3,7 @@ import Post from "../components/Post";
 import dog1 from "../stam/dog1.jpg";
 import "./Explore.css";
 import Navbar from "../components/Navbar";
-import Route_explore_pages from "../components/Route_explore_pages"
+import Route_explore_pages from "../components/Route_explore_pages";
 
 function Explore() {
   return (
