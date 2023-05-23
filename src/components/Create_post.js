@@ -3,12 +3,14 @@ import "./Create_post.css";
 import axios from "axios";
 import { Buffer } from "buffer";
 
-let globalPostID = 0; // Initialize the global postID variable
 function Create_post() {
+  const username = localStorage.getItem("username");
+
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState("");
   const [selectedHashtag, setSelectedHashtag] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(""); // State to store the success message
 
   const hashtags = [
     "Adoption",
@@ -50,15 +52,13 @@ function Create_post() {
     event.preventDefault();
     try {
       const response = await axios.post("http://localhost:8000/New_Post", {
-        postID: globalPostID,
-        username: "Tehilalev",
+        username,
         picture: image,
         caption,
         hashtag: selectedHashtag,
         likesCount: 0
       });
       if (response.data.status === "OK") {
-        globalPostID += 1;
         setImage(null);
         setCaption("");
         setSelectedHashtag("");
@@ -75,7 +75,12 @@ function Create_post() {
     <div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="label" className="user_name">
-          username
+          <h2>
+            Hey -
+            {username}
+            <br />
+            Choose a picture you want to upload!
+          </h2>
         </label>
         <div className="imageDiv">
           <label htmlFor="image" className="UplodeImageLabel">
@@ -132,8 +137,10 @@ function Create_post() {
           <button type="submit" className="createPostButton">
             Create Post
           </button>
+
         </div>
       </form>
+      {successMessage && <p>{successMessage}</p>}
     </div>
   );
 }

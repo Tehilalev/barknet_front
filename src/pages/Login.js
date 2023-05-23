@@ -24,6 +24,7 @@ function Login() {
       if (status === "OK") {
         // Login successful
         localStorage.setItem("token", data); // Store the token in localStorage or any other storage mechanism
+        localStorage.setItem("username", username); // Store the username in localStorage
         history("/home"); // Change the route to /home
       } else {
         // Login failed

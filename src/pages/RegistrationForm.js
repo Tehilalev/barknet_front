@@ -76,7 +76,7 @@ function RegistrationForm() {
         });
         console.log(response.data);
         if (response.data.status === "OK") {
-          history("/Home");
+          history("/login");
         }
         if (response.data.error === "User Exsits") {
           setUsername("");
