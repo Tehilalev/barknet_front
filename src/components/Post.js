@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as AiIcons from "react-icons/ai";
 import "./Post.css";
 
-const Post = ({ imageUrl, text,  }) => {
+function Post({ imageUrl, text, }) {
   const [likes, setLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -23,7 +23,7 @@ const Post = ({ imageUrl, text,  }) => {
       </div>
       <div className="post_action">
         <div
-          className={`heart_icon ${isLiked ? `liked` : ""}`}
+          className={`heart_icon ${isLiked ? "liked" : ""}`}
           onClick={hanldeLike}
         >
           <AiIcons.AiOutlineHeart />
@@ -32,6 +32,6 @@ const Post = ({ imageUrl, text,  }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Post;
