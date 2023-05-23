@@ -7,20 +7,21 @@ function Search() {
   const [searchQuery, setSearchQuery] = useState("");
   const [users, setUsers] = useState([]);
 
-  const handleSearch = async () => {
+  async function handleSearch(e) {
+    e.preventDefault();
+
     try {
-      const response = await axios.get("/search");
+      const response = await axios.post("http://localhost:8000/search", { query: searchQuery });
       setUsers(response.data.users);
     } catch (error) {
-      console.log("Error occurred while searching:", error);
+      console.log(error);
     }
-  };
+  }
 
   const renderUsers = () => {
     if (users.length === 0) {
       return <p>No users found.</p>;
     }
-
     return (
       <ul>
         {users.map((user) => (
