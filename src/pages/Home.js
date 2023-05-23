@@ -3,12 +3,15 @@ import "./Home.css";
 import Navbar from "../components/Navbar";
 
 function Home() {
+
   return (
     <div>
       <Navbar />
       <div className="home">
         <div className="right_side">
-          <h1>Home</h1>
+          <h1>
+            Welcome,
+          </h1>
         </div>
       </div>
     </div>
