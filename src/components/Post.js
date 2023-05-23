@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import * as AiIcons from "react-icons/ai";
 import "./Post.css";
 
-function Post({ imageUrl, text, }) {
-  const [likes, setLikes] = useState(0);
+function Post({ post }) {
+  const {
+ postID, username, picture, caption, hashtag, likeCount
+} = post;
+
+  const [likes, setLikes] = useState(likeCount);
   const [isLiked, setIsLiked] = useState(false);
 
   const hanldeLike = () => {
@@ -18,8 +22,8 @@ function Post({ imageUrl, text, }) {
   return (
     <div className="post">
       <div className="post_content">
-        <img src={imageUrl} alt="post img" className="post_image" />
-        <p className="post_text">{text}</p>
+        <img src={picture} alt="post img" className="post_image" />
+        <p className="post_text">{caption}</p>
       </div>
       <div className="post_action">
         <div
