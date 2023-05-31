@@ -22,8 +22,11 @@ import Traveling from "./pages/explore_pages/Traveling";
 
 function App() {
   return (
+
     <Router>
+
       <Routes>
+
         <Route path="/home" element={<Home />} />
         <Route path="/Messages" element={<Messages />} />
         <Route path="/New_Post" element={<NewPost />} />
@@ -45,6 +48,7 @@ function App() {
         <Route path="/Route_explore_pages" element={<RouteExplorePages />} />
 
       </Routes>
+
     </Router>
 
   );

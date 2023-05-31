@@ -96,8 +96,6 @@ function RegistrationForm() {
   return (
     <div className="registration-form">
       <h1>Welcome to BarkNet Web</h1>
-      <img src="logo1.jpeg" alt=" " />
-
       <div className="div-icons">
         <label htmlFor="firstName">First Name:</label>
         <input
