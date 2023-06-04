@@ -1,25 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Post from "../components/Post";
-import dog1 from "../stam/dog1.jpg";
 import "./Explore.css";
 import Navbar from "../components/Navbar";
-import Route_explore_pages from "../components/Route_explore_pages"
+import RouteExplorePages from "../components/Route_explore_pages";
 
 function Explore() {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/Explore")
+      .then((response) => response.json())
+      .then((data) => setPosts(data))
+      .catch((error) => console.error("error fatching post: ", error));
+  }, []);
+
   return (
     <div>
-      <Navbar />
       <div>
-        <Route_explore_pages />
+        <Navbar />
+      </div>
+      <div>
+        <RouteExplorePages />
         <div className="explore">
-          <Post imageUrl={dog1} text="This is a cute dog" />
-          <Post imageUrl={dog1} text="This is a cute dog" />
-          <Post imageUrl={dog1} text="This is a cute dog" />
-          <Post imageUrl={dog1} text="This is a cute dog" />
-          <Post imageUrl={dog1} text="This is a cute dog" />
-          <Post imageUrl={dog1} text="This is a cute dog" />
-          <Post imageUrl={dog1} text="This is a cute dog" />
-          <Post imageUrl={dog1} text="This is a cute dog" />
+          {posts.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
         </div>
       </div>
     </div>

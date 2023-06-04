@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Create_post.css";
-
-let globalPostID = 0; // Initialize the global postID variable
+import axios from "axios";
+import { Buffer } from "buffer";
 
 function Create_post() {
+  const username = localStorage.getItem("username");
+
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState("");
   const [selectedHashtag, setSelectedHashtag] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(""); // State to store the success message
 
   const hashtags = [
     "Adoption",
@@ -19,10 +22,21 @@ function Create_post() {
     "Traveling",
     "Others",
   ];
-
-  const handleImageUpload = (event) => {
+  const handleImageUpload = async (event) => {
     const uploadedImage = event.target.files[0];
-    setImage(uploadedImage);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const imageData = e.target.result;
+      const blob = new Blob([imageData]);
+      const arrayBufferReader = new FileReader();
+      arrayBufferReader.onloadend = () => {
+        const binaryData = Buffer.from(arrayBufferReader.result);
+
+        setImage(binaryData);
+      };
+      arrayBufferReader.readAsArrayBuffer(blob);
+    };
+    reader.readAsArrayBuffer(uploadedImage);
     setPreviewImage(URL.createObjectURL(uploadedImage));
   };
 
@@ -37,28 +51,23 @@ function Create_post() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const formData = new FormData();
-      formData.append("postID", globalPostID.toString()); // Set the postID to the current value of globalPostID
-      formData.append("username", "Tehilalev"); // Replace "currentUsername" with the actual current username
-      formData.append("picture", image);
-      formData.append("caption", caption);
-      formData.append("hashtag", selectedHashtag);
-      formData.append("likesCount", 0);
-      globalPostID += 1;
-      const response = await fetch("http://localhost:8000/", {
-        method: "POST",
-        body: formData,
+      const response = await axios.post("http://localhost:8000/New_Post", {
+        username,
+        picture: image,
+        caption,
+        hashtag: selectedHashtag,
+        likesCount: 0
       });
-      const data = await response.json();
-      console.log(data); // Handle the response data as needed
-      // Reset form
-      setImage(null);
-      setCaption("");
-      setSelectedHashtag("");
-      setPreviewImage(null);
+      if (response.data.status === "OK") {
+        setImage(null);
+        setCaption("");
+        setSelectedHashtag("");
+        setPreviewImage(null);
+        setSuccessMessage("Post uploaded successfully!");
+        setUploadedPost(response.data.data);
+      }
     } catch (error) {
-      console.error("Error creating post:", error);
-      // Handle the error as needed
+      console.log("Error creating post:", error);
     }
   };
 
@@ -66,7 +75,12 @@ function Create_post() {
     <div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="label" className="user_name">
-          userName
+          <h2>
+            Hey -
+            {username}
+            <br />
+            Choose a picture you want to upload!
+          </h2>
         </label>
         <div className="imageDiv">
           <label htmlFor="image" className="UplodeImageLabel">
@@ -74,6 +88,7 @@ function Create_post() {
           </label>
           <input
             type="file"
+            name="picture"
             className="fileUploadButton"
             id="image"
             accept="image/*"
@@ -122,8 +137,10 @@ function Create_post() {
           <button type="submit" className="createPostButton">
             Create Post
           </button>
+
         </div>
       </form>
+      {successMessage && <p>{successMessage}</p>}
     </div>
   );
 }

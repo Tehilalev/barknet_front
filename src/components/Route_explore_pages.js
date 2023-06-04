@@ -9,7 +9,7 @@ function Route_explore_pages() {
       <h1 className="title1">
         Click on All post to see posts of various interests
       </h1>
-      <div className="dog_gif"></div>
+      <div className="dog_gif" />
     </div>
   );
 }

@@ -14,7 +14,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/Login", {
+      const response = await axios.post("http://localhost:8000/login", {
         username,
         password,
       });
@@ -24,7 +24,8 @@ function Login() {
       if (status === "OK") {
         // Login successful
         localStorage.setItem("token", data); // Store the token in localStorage or any other storage mechanism
-        history("/Home");
+        localStorage.setItem("username", username); // Store the username in localStorage
+        history("/home"); // Change the route to /home
       } else {
         // Login failed
         setError(error);

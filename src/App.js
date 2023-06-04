@@ -5,9 +5,12 @@ import RegistrationForm from "./pages/RegistrationForm";
 
 function App() {
   return (
+
     <Router>
+
       <Routes>
-        <Route path="/Home" element={<Home />} />
+
+        <Route path="/home" element={<Home />} />
         <Route path="/Messages" element={<Messages />} />
         <Route path="/New_Post" element={<NewPost />} />
         <Route path="/Notifications" element={<Notifications />} />
@@ -28,6 +31,7 @@ function App() {
         <Route path="/Route_explore_pages" element={<RouteExplorePages />} />
 
       </Routes>
+
     </Router>
 
   );
