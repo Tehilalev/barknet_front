@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function RegistrationForm() {
+  const arrPic = ["https://publicdomainvectors.org/tn_img/robot-dog.webp", "https://publicdomainvectors.org/tn_img/doberman-pinscher-dog.webp", "https://publicdomainvectors.org/tn_img/dog-head-logo-symbol-publicdomainvectors.org.webp", "https://publicdomainvectors.org/tn_img/dog-pet-clipart-2-publicdom.webp", "https://publicdomainvectors.org/tn_img/dog.webp", "https://publicdomainvectors.org/tn_img/poodle-dog-pdv.webp", "https://publicdomainvectors.org/tn_img/strong-dog.webp", "https://publicdomainvectors.org/tn_img/brown-dog-publicdomain.webp"];
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -14,11 +15,13 @@ function RegistrationForm() {
   const [showMessageLast, setShowMessageLast] = useState(false);
   const [showMessageuser, setShowMessageuser] = useState(false);
   const [showMessagepass, setShowMessagepass] = useState(false);
-  const history = useNavigate();
 
+  const history = useNavigate();
   const handleRegistration = async (e) => {
     let isValid = true;
-
+    const randomIndex = Math.floor(Math.random() * arrPic.length);
+    const selectedProfileImage = arrPic[randomIndex];
+    localStorage.setItem("Profile", selectedProfileImage);
     // Validation checks
     if (
       firstName.length === 0 || firstName.length > 15 || !(firstName.match(/^[A-Za-z\s]+$/))) {
@@ -77,13 +80,11 @@ function RegistrationForm() {
         console.log(response.data);
         if (response.data.status === "OK") {
           history("/login");
-        }
-        if (response.data.error === "User Exsits") {
+        } else if (response.data.error === "User Exsits") {
           setUsername("");
           // eslint-disable-next-line no-alert
           alert("Username already exists. Please choose a different username.");
         } else {
-          // Handle registration error
           console.log("Registration error");
         }
       } catch (error) {
