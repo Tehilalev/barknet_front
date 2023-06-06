@@ -3,7 +3,7 @@ import "./Create_post.css";
 import axios from "axios";
 import { Buffer } from "buffer";
 
-function Create_post() {
+function CreatePost() {
   const username = localStorage.getItem("username");
 
   const [image, setImage] = useState(null);
@@ -145,4 +145,4 @@ function Create_post() {
   );
 }
 
-export default Create_post;
+export default CreatePost;
