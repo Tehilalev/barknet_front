@@ -10,84 +10,41 @@
   margin-bottom: 10px;
   margin-left: 25%;
   font-family: "Lato", sans-serif;
+  display: flex;
+  flex-direction: column-reverse;
+  position: absolute;
+  top: 40%;
+  left: 10%;
 }
 
+
+.profile-picture-container {
+  position: fixed;
+  top: 16%;
+  left: 0%;
+  width: 100px;
+  height: 100px;
+}
 
 .profile {
-  text-align: center;
-  margin-bottom: 20px;
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: 12%;
 }
 
-.profile img {
-  width: 229px;
-  height: 234px;
-  border-radius: 60%;
-  /* object-fit: cover; */
-  margin-bottom: 10px;
-  background-position: center;
-  background-size: cover;
-}
-
-.profile h1 {
-  font-size: 24px;
-  margin-bottom: 5px;
-}
-
-.profile h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.profile button {
-  background-color: #4caf50;
-  color: white;
-  padding: 8px 16px;
-  border: none;
+.editButton {
+  background: url(../../public/icons8-pencil.gif)no-repeat;
+  position: fixed;
+  width: 4%;
+  height: 6%;
   cursor: pointer;
-  margin-right: 10px;
-}
-
-.profile button:hover {
-  background-color: #45a049;
-}
-
-.profile ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.posts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-}
-
-.post img {
-  width: 100%;
-  height: auto;
-}
-
-.statistics {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.statistics button {
-  background-color: #4caf50;
-  color: white;
-  padding: 8px 16px;
   border: none;
-  cursor: pointer;
+  background-color: transparent;
 }
 
-.statistics button:hover {
-  background-color: #45a049;
-}
-
-.statistics-popup {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-top: 10px;
+.labelsDiv {
+  position: absolute;
+  display: flex;
+  flex-direction: column-reverse;
 }
