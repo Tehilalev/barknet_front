@@ -1,86 +1,113 @@
+.creatPost { 
+  position: relative; 
+  width: 40%; 
+  height: 90vh; 
+  background: transparent; 
+  border-radius: 20px; 
+  border: 4px solid rgb(255, 255, 255, .5); 
+  box-shadow: 0px 0px 30px rgb(0, 0, 0, .5); 
+  backdrop-filter: blur(5px); 
+  display: flex; 
+  flex-direction: column; 
+  margin-top: 30px; 
+  padding: 50px; 
+  align-items: center; /* Center align the content horizontally */
+} 
+
+.newPostLabel {
+  font-size: 40px;
+  margin-bottom:40px;
+}
+
 .imageDiv {
   display: flex; /* Use flexbox layout */
-  align-items: center;
-  display: flex;
+  flex-direction: column;
   font-size: 30px;
-  font-family: "Lato", sans-serif;
+  margin-bottom: 10px;
+  align-items: center; /* Center align the content horizontally */
+  justify-content: center;
 }
 
 .UplodeImageLabel {
   display: flex;
-  font-size: 30px;
-  font-family: "Lato", sans-serif;
-  width: 60%;
-  padding-bottom: 20px;
+  font-size: 20px;
 }
 
 .fileUploadButton {
-  display: flex;
-  position: relative;
-  font-size: 15px;
-  margin-top: 6px;
-  margin-bottom: 20px;
-  right: 20px;
-}
-
-.captionDiv {
-  display: flex; /* Use flexbox layout */
-  /*align-items: 10px;*/
-  font-size: 30px;
-  font-family: "Lato", sans-serif;
+  width: 100px;
+  height: 20px;
+  margin-bottom: 30px;
+  background-color: rgba(248, 237, 237, 0.905);
 }
 
 .caption {
-  width: 60%;
-  font-size: 30px;
   display: flex;
-  flex-direction: row;
-  font-family: "Lato", sans-serif;
-  text-align: left;
-
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-size: 20px;
+  margin-bottom: 2px;
 }
 
 .captionTextBox {
-  display: flex;
-  width: 70%;
-  flex-direction: row;
-  height: 25px;
-  position: relative;
-  margin-bottom: 20px;
-  left: 5px
+  font-size: 15px;
+  height: 20px; 
+  width: 500px;
+  resize: vertical; /* Allow vertical resizing */
+  overflow-y: auto;
+  margin-bottom: 30px;
+  background-color: rgba(248, 237, 237, 0.905);
 }
 
 .chooseHashtag {
   display: flex;
-  width: 90%;
-  font-size: 30px;
-  font-family: "Lato", sans-serif;
+  font-size: 20px;
+  flex-direction: column;
+  margin-bottom: 2px;
 }
 
 .selected_hashtag {
   display: flex;
   position: relative;
   font-size: 25px;
-  margin-top: 4px;
-  margin-bottom: 20px;
-  left: 5px;
+  margin-bottom: 30px;
+
+  /*width: 200px;*/ 
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  background-color: #fff; 
+  font-size: 16px; 
+  color: #333; 
+  cursor: pointer;
+  background-color: rgba(248, 237, 237, 0.905);
 }
 
 .hashtagDiv {
   display: flex;
   font-size: 30px;
-  font-family: "Lato", sans-serif;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .buttonDiv {
   display: flex;
-  justify-content: center;
-  
+  margin-top: 10px;
 }
+
 .createPostButton {
-  margin-top: 50px;
-  display: flex;
+  border: none;
+  width: 120px;
+  height: 40px;
   font-size: 20px;
-  position: relative;
-  left: 90px;
+  color: black;
+  border-radius: 5%;
+  cursor: pointer;
+  background-color: rgba(241, 213, 213, 0.905);
+  transition: background-color 0.3s;
+
+
+}
+
+.createPostButton:hover {
+  background-color: rgba(224, 185, 185, 0.905);
 }
