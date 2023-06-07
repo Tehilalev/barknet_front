@@ -5,11 +5,9 @@ import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
   const history = useNavigate();
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
   async function handleLogin(e) {
     e.preventDefault();
 
@@ -20,14 +18,21 @@ function Login() {
       });
 
       const { status, data, error } = response.data;
-
       if (status === "OK") {
-        // Login successful
-        localStorage.setItem("token", data); // Store the token in localStorage or any other storage mechanism
-        localStorage.setItem("username", username); // Store the username in localStorage
+        const existingData = JSON.parse(localStorage.getItem("userData")) || [];
+        if (existingData) {
+          const userDataToUpdate = existingData.find((data) => data.username === username);
+          if (userDataToUpdate) {
+            userDataToUpdate.token = data;
+            const visitedUser = username;
+            const currentUser = username;
+            localStorage.setItem("visitedUser", visitedUser);
+            localStorage.setItem("currentUser", currentUser);
+            localStorage.setItem("userData", JSON.stringify(existingData));
+          }
+        }
         history("/home"); // Change the route to /home
       } else {
-        // Login failed
         setError(error);
       }
     } catch (error) {

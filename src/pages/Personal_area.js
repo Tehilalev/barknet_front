@@ -5,7 +5,9 @@ import "./Personal_area.css";
 import Navbar from "../components/Navbar";
 
 function Personal_area() {
+  const userData = JSON.parse(localStorage.getItem("userData")) || [];
 
+  const profilePicture = userData[0]?.profile;
   const [user, setUser] = useState(null);
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
@@ -13,66 +15,23 @@ function Personal_area() {
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
   const [showStatistics, setShowStatistics] = useState(false);
-  const pic = localStorage.getItem("Profile");
+
   return (
     <div>
       <Navbar />
       <div className="personal-area-page">
-        <div className="profile">
-          <img
-            src={pic}
-            alt=""
-            style={{
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          />
-          { /* <h1>{user.username}</h1>
-          <h2>
-            {user.firstName}
-            {user.lastName}
-          </h2>
-          <button onClick={toggleFollowers}>
-            {showFollowers ? "Hide Followers" : "Followers"}
-          </button>
-          {showFollowers && (
-            <ul>
-              {followers.map((follower, index) => (
-                <li key={index}>{follower}</li>
-              ))}
-            </ul>
-          )}
-          <button onClick={toggleFollowing}>
-            {showFollowing ? "Hide Following" : "Following"}
-          </button>
-          {showFollowing && (
-            <ul>
-              {following.map((followedUser, index) => (
-                <li key={index}>{followedUser}</li>
-              ))}
-            </ul>
-          )}
-        </div>
-
-        <div className="posts">
-          {posts.map((post, index) => (
-            <div key={index} className="post">
-              <img src={post.image} alt="Post" />
-            </div>
-          ))}
-        </div>
-
-        <div className="statistics">
-          <button onClick={toggleStatistics}>Statistics</button>
-          {showStatistics && (
-            <div className="statistics-popup">
-              <p>Statistical data goes here...</p>
-            </div>
-          )} */ }
+        <img src={profilePicture} alt="Profile" className="profile" />
+        <button type="button" className="editButton"> </button>
+        <div className="labelsDiv">
+          <label htmlFor="userName">User Name:</label>
+          <label htmlFor="firstName">User Name:</label>
+          <label htmlFor="lastName">User Name:</label>
+          <label htmlFor="birth">User Name:</label>
+          <label htmlFor="email">User Name:</label>
         </div>
       </div>
     </div>
+
   );
 }
 

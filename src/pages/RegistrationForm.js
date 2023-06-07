@@ -20,9 +20,7 @@ function RegistrationForm() {
   const handleRegistration = async (e) => {
     let isValid = true;
     const randomIndex = Math.floor(Math.random() * arrPic.length);
-    const selectedProfileImage = arrPic[randomIndex];
-    localStorage.setItem("Profile", selectedProfileImage);
-    // Validation checks
+    const profile = arrPic[randomIndex];
     if (
       firstName.length === 0 || firstName.length > 15 || !(firstName.match(/^[A-Za-z\s]+$/))) {
       setFirstName("");
@@ -79,11 +77,18 @@ function RegistrationForm() {
         });
         console.log(response.data);
         if (response.data.status === "OK") {
+          const userData = {
+            username,
+            profile,
+            token: null
+          };
+          const existingData = JSON.parse(localStorage.getItem("userData")) || [];
+          existingData.push(userData);
+          localStorage.setItem("userData", JSON.stringify(existingData));
           history("/login");
         } else if (response.data.error === "User Exsits") {
           setUsername("");
-          // eslint-disable-next-line no-alert
-          alert("Username already exists. Please choose a different username.");
+          setShowMessageuser(true);
         } else {
           console.log("Registration error");
         }

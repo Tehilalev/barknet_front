@@ -3,7 +3,7 @@ import "./Home.css";
 import Navbar from "../components/Navbar";
 
 function Home() {
-  const username = localStorage.getItem("username");
+  const username = localStorage.getItem("currentUser");
   return (
     <div>
       <Navbar />
@@ -18,4 +18,5 @@ function Home() {
     </div>
   );
 }
+
 export default Home;
