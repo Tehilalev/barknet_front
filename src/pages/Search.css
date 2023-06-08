@@ -50,3 +50,12 @@
 .search_button:hover {
   background-color: rgba(224, 185, 185, 0.905);
 }
+.profile {
+  background: url(../../public/profile.png)no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* width: 20%; */
+  height: 20%;
+  /* position: fixed; */
+  /* display: flex; */
+}
