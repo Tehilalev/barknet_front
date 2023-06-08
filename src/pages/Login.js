@@ -19,18 +19,8 @@ function Login() {
 
       const { status, data, error } = response.data;
       if (status === "OK") {
-        const existingData = JSON.parse(localStorage.getItem("userData")) || [];
-        if (existingData) {
-          const userDataToUpdate = existingData.find((data) => data.username === username);
-          if (userDataToUpdate) {
-            userDataToUpdate.token = data;
-            const visitedUser = username;
-            const currentUser = username;
-            localStorage.setItem("visitedUser", visitedUser);
-            localStorage.setItem("currentUser", currentUser);
-            localStorage.setItem("userData", JSON.stringify(existingData));
-          }
-        }
+        localStorage.setItem("visitedUser", username);
+        localStorage.setItem("currentUser", username);
         history("/home"); // Change the route to /home
       } else {
         setError(error);

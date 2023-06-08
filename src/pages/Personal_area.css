@@ -9,18 +9,26 @@
 
 .leftsideDiv {
   display: flex;
+  /* align-items: flex-start; */
+  width: 20%;
+  height: 100%;
   flex-direction: column;
-  align-items: flex-start;
 }
 
 .profile {
-  width: 150px;
-  height: 150px;
+  background: url(../../public/profile.png)no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* width: 20%; */
+  height: 20%;
+  /* position: fixed; */
+  /* display: flex; */
 }
+
 
 .editButton {
   background: url(../../public/icons8-pencil.gif) no-repeat;
-  width: 4%;
+  width: 22%;
   height: 6%;
   cursor: pointer;
   border: none;
