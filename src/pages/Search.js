@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Import the Link component
 import "./Search.css";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
 function Search() {
+  localStorage.setItem("profileU", profilepicture);
   const [searchQuery, setSearchQuery] = useState("");
   const [users, setUsers] = useState([]);
 
@@ -22,10 +24,20 @@ function Search() {
     if (users.length === 0) {
       return <p>No users found.</p>;
     }
+     function changesome(user) {
+      localStorage.setItem("visitedUser", user.username);
+
+    }
+
     return (
       <ul>
         {users.map((user) => (
-          <li key={user.id}>{user.username}</li>
+          <li key={user.id}>
+            <Link to="/Personal_area" onClick={changesome(user)}>{user.username}</Link>
+            {/* Navigate to the user's personal area */}
+            <img src={user.profilePicture} alt="Profile Picture" /> 
+            {/* Display the profile picture */}
+          </li>
         ))}
       </ul>
     );
