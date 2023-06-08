@@ -1,8 +1,8 @@
 import React from "react";
-import "./Log_out.css";
+import RegistrationForm from "./RegistrationForm";
 
 export default function Log_out() {
   return (
-    <div>Log_out</div>
+    <div><RegistrationForm /></div>
   );
 }
