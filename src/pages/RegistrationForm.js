@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function RegistrationForm() {
-  const arrPic = ["https://publicdomainvectors.org/tn_img/robot-dog.webp", "https://publicdomainvectors.org/tn_img/doberman-pinscher-dog.webp", "https://publicdomainvectors.org/tn_img/dog-head-logo-symbol-publicdomainvectors.org.webp", "https://publicdomainvectors.org/tn_img/dog-pet-clipart-2-publicdom.webp", "https://publicdomainvectors.org/tn_img/dog.webp", "https://publicdomainvectors.org/tn_img/poodle-dog-pdv.webp", "https://publicdomainvectors.org/tn_img/strong-dog.webp", "https://publicdomainvectors.org/tn_img/brown-dog-publicdomain.webp"];
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -19,8 +19,6 @@ function RegistrationForm() {
   const history = useNavigate();
   const handleRegistration = async (e) => {
     let isValid = true;
-    const randomIndex = Math.floor(Math.random() * arrPic.length);
-    const profile = arrPic[randomIndex];
     if (
       firstName.length === 0 || firstName.length > 15 || !(firstName.match(/^[A-Za-z\s]+$/))) {
       setFirstName("");
@@ -77,14 +75,7 @@ function RegistrationForm() {
         });
         console.log(response.data);
         if (response.data.status === "OK") {
-          const userData = {
-            username,
-            profile,
-            token: null
-          };
-          const existingData = JSON.parse(localStorage.getItem("userData")) || [];
-          existingData.push(userData);
-          localStorage.setItem("userData", JSON.stringify(existingData));
+
           history("/login");
         } else if (response.data.error === "User Exsits") {
           setUsername("");

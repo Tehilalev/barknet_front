@@ -1,10 +1,10 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./Notifications.css";
 import Navbar from "../components/Navbar";
 
 function Notifications() {
   const [notifications, setNotifications] = useState([]);
-  const username = localStorage.getItem("username");
+  const username = localStorage.getItem("currentUser");
   const [hasFetchedData, setHasFetchedData] = useState(false);
 
   useEffect(() => {
