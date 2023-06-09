@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import the Link component
+import { Link, useNavigate } from "react-router-dom"; // Import the Link component
 import "./Search.css";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
 function Search() {
-  localStorage.setItem("profileU", profilepicture);
   const [searchQuery, setSearchQuery] = useState("");
   const [users, setUsers] = useState([]);
-
+  const history = useNavigate();
   async function handleSearch(e) {
     e.preventDefault();
 
@@ -19,30 +18,29 @@ function Search() {
       console.log(error);
     }
   }
+  const changesome = (user) => {
+    localStorage.setItem("visitedUser", user.username);
+    history("/personal_area");
+  };
 
   const renderUsers = () => {
     if (users.length === 0) {
       return <p>No users found.</p>;
     }
-     function changesome(user) {
-      localStorage.setItem("visitedUser", user.username);
-
-    }
-
     return (
-      <ul>
+      <div>
+        <br />
         {users.map((user) => (
-          <li key={user.id}>
-            <Link to="/Personal_area" onClick={changesome(user)}>{user.username}</Link>
-            {/* Navigate to the user's personal area */}
-            <img src={user.profilePicture} alt="Profile Picture" /> 
-            {/* Display the profile picture */}
-          </li>
+          <div className="user">
+            <div className="profileDiv"> </div>
+            <button type="button" className="userlink" onClick={() => changesome(user)}>
+              {user.username}
+            </button>
+          </div>
         ))}
-      </ul>
+      </div>
     );
   };
-
   return (
     <div>
       <Navbar />
@@ -57,6 +55,8 @@ function Search() {
         <button type="button" className="search_button" onClick={handleSearch}>
           Search
         </button>
+        <br />
+        <br />
         {renderUsers()}
       </div>
     </div>
