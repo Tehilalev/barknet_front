@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Import the Link component
 import axios from "axios";
 import "./Personal_area.css";
 import Navbar from "../components/Navbar";
 import Post from "../components/Post";
 
 function Personal_area() {
+  const arrStatPic = ["https://worldanimalfoundation.org/wp-content/uploads/2023/02/4-1024x768.jpg", "https://www.wiscontext.org/sites/default/files/assets/images/apl-demographics-dogs-madison-breeds-2016-piechart.jpg", "https://cdn.vox-cdn.com/thumbor/k7ptfn4JhwVxU8T3dXNJTNfEfjg=/0x0:2617x1990/1200x0/filters:focal(0x0:2617x1990):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/7025029/222FINAL.0.png"];
+  const history = useNavigate();
   const visited = localStorage.getItem("visitedUser");
   const current = localStorage.getItem("currentUser");
   const flagSomeoneElse = current !== visited;
@@ -14,7 +16,6 @@ function Personal_area() {
   const [posts, setPosts] = useState([]);
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
-  const [showStatistics, setShowStatistics] = useState(false);
   const [user, setUser] = useState(null); // Store user data
   const [editMode, setEditMode] = useState(false); // Edit mode flag
   const [editedUser, setEditedUser] = useState({
@@ -24,6 +25,7 @@ function Personal_area() {
     birthdate: ""
   }); // Edited user details
   const [isFollowing, setIsFollowing] = useState(false); // Following flag
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   async function handleLoading() {
     try {
@@ -44,6 +46,10 @@ function Personal_area() {
         email,
         birthdate
       });
+      const postsResponse = await axios.post("http://localhost:8000/my_posts", {
+        visited
+      });
+      setPosts(postsResponse.data);
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +57,8 @@ function Personal_area() {
 
   useEffect(() => {
     handleLoading();
-  }, []);
+  }, [visited, current]);
+
   useEffect(() => {
     // Check if the user is already being followed
     const checkFollowing = async () => {
@@ -175,17 +182,47 @@ function Personal_area() {
     setShowFollowing(false);
   };
 
-  useEffect(() => {
-    fetch("http://localhost:8000/my_posts", { visited })
-      .then((response) => response.json())
-      .then((data) => setPosts(data))
-      .catch((error) => console.error("error fatching post: ", error));
-  }, []);
+  /* useEffect(() => {
+     fetch("http://localhost:8000/my_posts", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify({ visited }),
+     })
+       .then((response) => response.json())
+       .then((data) => setPosts(data))
+       .catch((error) => console.error("error fetching posts: ", error));
+   }, []); */
 
+  const handleXButtonClick = () => {
+    if (flagSomeoneElse) {
+      localStorage.setItem("visitedUser", current);
+      history("/personal_area");
+    }
+  };
+
+  const handlePreviousImage = () => {
+    if (currentImageIndex > 0) {
+      setCurrentImageIndex(currentImageIndex - 1);
+    }
+  };
+
+  const handleNextImage = () => {
+    const totalImages = 3; // Replace with the total number of images you have
+    if (currentImageIndex < totalImages - 1) {
+      setCurrentImageIndex(currentImageIndex + 1);
+    }
+  };
   return (
     <div>
       <Navbar />
       <div className="personal-area-page">
+        {flagSomeoneElse && (
+          <button type="button" onClick={handleXButtonClick}>
+            X
+          </button>
+        )}
         <div className="leftsideDiv">
           <div className="profile" />
           {flagSomeoneElse && (
@@ -295,6 +332,19 @@ function Personal_area() {
               </div>
             )}
           </button>
+          <div className="image-scroll">
+            <button type="button" className="scroll-arrow" onClick={handlePreviousImage}>
+              &lt;
+            </button>
+            <img
+              src={arrStatPic[currentImageIndex]}
+              className="scroll-image"
+              alt=" "
+            />
+            <button type="button" className="scroll-arrow" onClick={handleNextImage}>
+              &gt;
+            </button>
+          </div>
         </div>
         <div className="scrollable1">
           {posts.map((post) => (
