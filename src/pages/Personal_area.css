@@ -1,35 +1,42 @@
 .personal-area-page {
   width: 100%;
-  height: 100%;
-  max-width: 960px;
+  height: 81%;
+  max-width: 100%;
   padding: 20px;
-  font-family: inherit;
+  font-family: sans-serif;
   position: fixed;
+  font-size: 111%;
+  background: url(../../public/backPersonal.png)no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .leftsideDiv {
   display: flex;
   /* align-items: flex-start; */
-  width: 20%;
-  height: 100%;
+  width: 26%;
+  height: 159%;
   flex-direction: column;
 }
 
 .profile {
-  background: url(../../public/profile.png)no-repeat;
+  background: url(../../public/profile2.png)no-repeat;
   background-position: center;
   background-size: cover;
   /* width: 20%; */
   height: 20%;
+
   /* position: fixed; */
-  /* display: flex; */
+  /* display: flex;
+  border: double;
+  border-color: #cdb9ac; */
 }
 
 
 .editButton {
   background: url(../../public/icons8-pencil.gif) no-repeat;
   width: 22%;
-  height: 6%;
+  height: 4%;
   cursor: pointer;
   border: none;
   background-color: transparent;
@@ -39,4 +46,82 @@
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+}
+
+.popup {
+  background: transparent;
+  border: 4px solid rgba(255, 255, 255, .5);
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, .5);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(5px);
+  background-color: transparent;
+  /* border: 1px solid rgb(239 236 233); */
+  padding: 10px;
+  /* box-shadow: 0 -3px 4px rgba(0, 0, 0, 0.2); */
+  z-index: 1;
+  font-size: 100%;
+  font-family: monospace;
+}
+
+.popup li {
+  margin: 4px 0;
+}
+
+.popup::before {
+  content: "";
+  position: absolute;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-bottom-color: #fff;
+}
+
+.popup::after {
+  content: "";
+  position: absolute;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: #ccc;
+}
+
+.followerB {
+  border: transparent;
+  background: transparent;
+  cursor: pointer;
+  width: 16%;
+  font-size: 99%;
+  font-family: unset;
+  font-weight: bold;
+}
+
+.followingB {
+  border: transparent;
+  background: transparent;
+  cursor: pointer;
+  width: 16%;
+  font-size: 99%;
+  font-family: unset;
+  font-weight: bold;
+}
+
+.followDiv {
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  width: 62%;
+  height: 89%;
+  flex-direction: row;
+  top: 4%;
+  left: 28%;
+}
+
+.scrollable1 {
+  display: flex;
+  flex-grow: 1;
+  position: absolute;
+  overflow: auto;
+  justify-content: center;
+  flex-direction: column;
+  overflow-x: hidden;
+  top: 12%;
+  left: 86%;
 }
