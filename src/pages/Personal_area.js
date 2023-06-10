@@ -214,16 +214,26 @@ function Personal_area() {
       setCurrentImageIndex(currentImageIndex + 1);
     }
   };
+  const handleCreatePost = () => {
+    // Redirect the user to the "Create Post" page
+    history("/new_post");
+  };
+
   return (
     <div>
       <Navbar />
       <div className="personal-area-page">
-        {flagSomeoneElse && (
-          <button type="button" onClick={handleXButtonClick}>
-            X
-          </button>
-        )}
+
         <div className="leftsideDiv">
+          {flagSomeoneElse && (
+            <button
+              type="button"
+              style={{ width: 35, cursor: "pointer" }}
+              onClick={handleXButtonClick}
+            >
+              X
+            </button>
+          )}
           <div className="profile" />
           {flagSomeoneElse && (
             <button
@@ -347,6 +357,18 @@ function Personal_area() {
           </div>
         </div>
         <div className="scrollable1">
+          {posts.length === 0 && !flagSomeoneElse && (
+            <div>
+              <p>You have no posts yet</p>
+              <button
+                type="button"
+                style={{ cursor: "pointer" }}
+                onClick={handleCreatePost}
+              >
+                Create New Post
+              </button>
+            </div>
+          )}
           {posts.map((post) => (
             <Post
               key={post.postID}
