@@ -5,10 +5,10 @@ import axios from "axios";
 // import { FaPhotoVideo } from "react-icons/fa";
 
 function Post({
- postID, username, picture, caption, hashtag, likesCount
+  postID, username, picture, caption, hashtag, likesCount
 }) {
   console.log("likesCount1 ", likesCount);
-  const useRname = localStorage.getItem("username");
+  const useRname = localStorage.getItem("currentUser");
 
   const [imageDataURL, setImageDataURL] = useState("");
   useEffect(() => {

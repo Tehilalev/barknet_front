@@ -4,7 +4,7 @@ import axios from "axios";
 import { Buffer } from "buffer";
 
 function CreatePost() {
-  const username = localStorage.getItem("username");
+  const username = localStorage.getItem("currentUser");
 
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState("");
