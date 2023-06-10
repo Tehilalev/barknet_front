@@ -214,11 +214,9 @@ function Personal_area() {
       setCurrentImageIndex(currentImageIndex + 1);
     }
   };
-  console.log(toString(posts.picture));
   return (
     <div>
       <Navbar />
-      <img src={`data:image/png;base64,${posts.picture}`} alt="Post" />
       <div className="personal-area-page">
         {flagSomeoneElse && (
           <button type="button" onClick={handleXButtonClick}>
