@@ -111,7 +111,12 @@ function CreatePost() {
 
         {previewImage && (
           <div>
-            <img src={previewImage} alt="Preview" style={{ width: "200px" }} />
+            <img
+              src={previewImage}
+              alt="Preview"
+              width={95}
+              height={95}
+            />
           </div>
         )}
 
