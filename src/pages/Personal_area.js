@@ -374,7 +374,7 @@ function Personal_area() {
               key={post.postID}
               postID={post.postID}
               username={post.username}
-              picture={post.picture.data}
+              picture={post.picture}
               caption={post.caption}
               hashtag={post.hashtag}
               likesCount={post.likesCount}

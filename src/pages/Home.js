@@ -46,7 +46,7 @@ function Home() {
               hashtag={post.hashtag}
               likesCount={post.likesCount}
             />
-      ))}
+          ))}
         </div>
       </div>
     </div>

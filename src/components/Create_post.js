@@ -1,11 +1,9 @@
 import React, { useContext, useState } from "react";
 import "./Create_post.css";
 import axios from "axios";
-import { Buffer } from "buffer";
 
 function CreatePost() {
   const username = localStorage.getItem("currentUser");
-
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState("");
   const [selectedHashtag, setSelectedHashtag] = useState("");
@@ -22,22 +20,16 @@ function CreatePost() {
     "Traveling",
     "Others",
   ];
-  const handleImageUpload = async (event) => {
-    const uploadedImage = event.target.files[0];
+  const toBase64 = (image) => new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload = (e) => {
-      const imageData = e.target.result;
-      const blob = new Blob([imageData]);
-      const arrayBufferReader = new FileReader();
-      arrayBufferReader.onloadend = () => {
-        const binaryData = Buffer.from(arrayBufferReader.result);
-
-        setImage(binaryData);
-      };
-      arrayBufferReader.readAsArrayBuffer(blob);
-    };
-    reader.readAsArrayBuffer(uploadedImage);
-    setPreviewImage(URL.createObjectURL(uploadedImage));
+    reader.readAsDataURL(image);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+  const handleImageUpload = (event) => {
+    setImage(event.target.files[0]);
+    const prevBlob = URL.createObjectURL(event.target.files[0]);
+    setPreviewImage(prevBlob);
   };
 
   const handleCaptionChange = (event) => {
@@ -50,14 +42,16 @@ function CreatePost() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const b64file = await toBase64(image);
     try {
       const response = await axios.post("http://localhost:8000/New_Post", {
         username,
-        picture: image,
+        picture: b64file,
         caption,
         hashtag: selectedHashtag,
         likesCount: 0
       });
+      console.log(b64file);
       if (response.data.status === "OK") {
         setImage(null);
         setCaption("");

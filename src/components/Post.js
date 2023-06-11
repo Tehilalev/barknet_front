@@ -9,21 +9,6 @@ function Post({
 }) {
   console.log("likesCount1 ", likesCount);
   const useRname = localStorage.getItem("currentUser");
-
-  const [imageDataURL, setImageDataURL] = useState("");
-  useEffect(() => {
-    const reader = new FileReader();
-
-    reader.onload = (event) => {
-      const imageDataURL = event.target.result;
-      setImageDataURL(imageDataURL);
-    };
-
-    // Convert the binary data to a data URL
-    reader.readAsDataURL(new Blob([picture]));
-  }, [picture]);
-
-  // console.log(picture);
   const [likes, setLikes] = useState(() => {
     const initialLikes = Number.isNaN(Number(likesCount))
       ? 0
@@ -62,7 +47,7 @@ function Post({
     <div className="post">
       <div className="post_content">
         <p className="username">{username}</p>
-        {imageDataURL && <img src={imageDataURL} alt="Image_" />}
+        <img src={picture} alt="Image_" width={194} />
         <p className="post_text">{caption}</p>
         <p className="hashtag">
           #
