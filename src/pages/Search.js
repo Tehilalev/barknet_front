@@ -45,12 +45,14 @@ function Search() {
     <div>
       <Navbar />
       <div className="search">
-        <h2 className="label_search">Who we are looking for?</h2>
+        <h2 className="label_search">Who are we looking for?</h2>
         <input
           className="search_box"
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="searchBox" // Update the placeholder value
+
         />
         <button type="button" className="search_button" onClick={handleSearch}>
           Search
