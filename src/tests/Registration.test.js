@@ -1,4 +1,6 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import {
+ render, screen, fireEvent, waitFor
+} from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import axios from "axios";
 import RegistrationForm from "../pages/RegistrationForm";
@@ -162,4 +164,3 @@ test("displays error message for invalid email", async () => {
     expect(invalidInput).toBe(true);
   });
 });
-
